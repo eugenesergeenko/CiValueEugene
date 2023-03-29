@@ -38,7 +38,7 @@ public class ECommerceController {
             limit = PRODUCTS_MAX;
         ProductSearchRequest productSearchRequest = new ProductSearchRequest(shopperId, category, brand, limit);
         List<Product> products = productService.findBySearchRequest(productSearchRequest);
-        if(products != null && products.isEmpty()) {
+        if(products != null && !products.isEmpty()) {
             List<ProductMetadata> response = products.stream().map(product -> new ProductMetadata(product)).collect(Collectors.toList());
             return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
